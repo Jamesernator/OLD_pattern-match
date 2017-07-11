@@ -7,9 +7,21 @@ export default function regex(regExp) {
     return {
         [match](value) {
             if (typeof value !== 'string') {
-                return false
+                return {
+                    matches: false,
+                    reason: `value is not a string`
+                }
             }
-            return Boolean(regExp.exec(value))
+
+            if (regExp.exec(value)) {
+                return { matches: true }
+            } else {
+                return {
+                    matches: false,
+                    reason: `string does not match ${ regExp }`,
+                    reasonTag: `regex`,
+                }
+            }
         }
     }
 }

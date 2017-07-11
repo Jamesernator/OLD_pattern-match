@@ -3,6 +3,14 @@ import isConstructor from "./#isConstructor.js"
 
 export default {
     [match](value) {
-        return isConstructor(value)
+        if (isConstructor(value)) {
+            return { matches: true }
+        } else {
+            return {
+                matches: false,
+                reasonTag: `constructor`,
+                reason: `value isn't a constructor`,
+            }
+        }
     }
 }

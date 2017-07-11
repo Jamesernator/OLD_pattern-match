@@ -16,7 +16,15 @@ export default function type(typeName) {
     }
     return {
         [match](value) {
-            return typeof value === typeName
+            if (typeof value === typeName) {
+                return { matches: true }
+            } else {
+                return {
+                    matches: false,
+                    reason: `typeof value is not ${ typeName }`,
+                    reasonTag: `type`,
+                }
+            }
         }
     }
 }

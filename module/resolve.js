@@ -1,3 +1,4 @@
+import match from "./sym.js"
 import undef from "./undef.js"
 import nil from "./nil.js"
 import is from "./is.js"
@@ -13,7 +14,7 @@ export default function resolve(item) {
         return undef
     } else if (item === null) {
         return nil
-    } else if (typeof item[Symbol.matches] === 'function') {
+    } else if (typeof item[match] === 'function') {
         return item
     } else if (typeof item === 'number') {
         return is(item)

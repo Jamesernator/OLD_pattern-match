@@ -2,7 +2,19 @@ import match from "./sym.js"
 
 export default {
     [match](value) {
-        return typeof value === 'object'
-            && value !== null
+        if (value === null) {
+            return {
+                matches: false,
+                reason: `value is null`,
+            }
+        } else if (typeof value !== 'object') {
+            return {
+                matches: false,
+                reason: `typeof value is not object`,
+                reasonTag: `object`,
+            }
+        } else {
+            return { matches: true }
+        }
     }
 }

@@ -4,7 +4,15 @@ import match from "./sym.js"
 export default function is(other) {
     return {
         [match](obj) {
-            return Object.is(obj, other)
+            if (Object.is(obj, other)) {
+                return { matches: true }
+            } else {
+                return {
+                    matches: false,
+                    reasonTag: `is`,
+                    reason: `value is not the same as expected`,
+                }
+            }
         }
     }
 }

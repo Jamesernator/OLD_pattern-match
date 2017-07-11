@@ -1,4 +1,3 @@
-#!/usr/bin/env babel-node
 import match from "./sym.js"
 
 function* entries(object, symbols) {
@@ -27,16 +26,27 @@ export default function obj(...args) {
 
     return {
         [match](value, matches) {
-            if (typeof value !== 'object' && typeof value !== 'function') {
-                return false
+            if (value === null || typeof value !== 'object' && typeof value !== 'function') {
+                return {
+                    matches: false,
+                    reason: `value is not an object`,
+                    reasonTag: `obj`,
+                }
             }
 
             for (const [key, pattern] of entries(objectPattern, matchSymbols)) {
-                if (!matches(pattern, value[key])) {
-                    return false
+                const { matches: isMatch, reason } = matches.details(pattern, value[key])
+                if (!isMatch) {
+                    return {
+                        matches: false,
+                        reason: [`key ${ String(key) } does not match`, [
+                            reason
+                        ]],
+                        reasonTag: `obj`,
+                    }
                 }
             }
-            return true
+            return { matches: true }
         }
     }
 }

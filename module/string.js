@@ -2,6 +2,14 @@ import match from "./sym.js"
 
 export default {
     [match](value) {
-        return typeof value === 'string'
+        if (typeof value === 'string') {
+            return { matches: true }
+        } else {
+            return {
+                matches: false,
+                reason: `typeof value is not string`,
+                reasonTag: `string`,
+            }
+        }
     }
 }

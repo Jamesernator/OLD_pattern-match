@@ -7,7 +7,15 @@ export default function instance(constructor) {
     }
     return {
         [match](value) {
-            return value instanceof constructor
+            if (value instanceof constructor) {
+                return { matches: true }
+            } else {
+                return {
+                    matches: false,
+                    reasonTag: `instance`,
+                    reason: `value not instanceof ${ constructor.name }`
+                }
+            }
         }
     }
 }
