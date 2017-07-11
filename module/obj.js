@@ -35,12 +35,12 @@ export default function obj(...args) {
             }
 
             for (const [key, pattern] of entries(objectPattern, matchSymbols)) {
-                const { matches: isMatch, reason } = matches.details(pattern, value[key])
-                if (!isMatch) {
+                const details = matches.details(pattern, value[key])
+                if (!details.matches) {
                     return {
                         matches: false,
                         reason: [`key ${ String(key) } does not match`, [
-                            reason
+                            details
                         ]],
                         reasonTag: `obj`,
                     }

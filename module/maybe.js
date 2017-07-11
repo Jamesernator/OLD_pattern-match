@@ -6,15 +6,15 @@ export default function maybe(pattern) {
             if (value == null) {
                 return { matches: true }
             } else {
-                const { isMatch, reason } = matches.details(pattern, value)
-                if (isMatch) {
+                const details = matches.details(pattern, value)
+                if (details) {
                     return { matches: true }
                 } else {
                     return {
                         matches: false,
                         reasonTag: `maybe`,
                         reason: [`pattern did not match and is not null or undefined`, [
-                            reason
+                            details
                         ]]
                     }
                 }

@@ -22,13 +22,13 @@ export default function array(...args) {
                 }
 
                 for (const [idx, pattern] of arrayPattern.entries()) {
-                    const { matches: isMatch, reason } = matches.details(pattern, value[idx])
-                    if (!isMatch) {
+                    const details = matches.details(pattern, value[idx])
+                    if (!details.matches) {
                         return {
                             matches: false,
                             reasonTag: `array`,
                             reason: [`element ${ idx } of array does not match corresponding pattern`, [
-                                reason
+                                details
                             ]]
                         }
                     }
@@ -58,26 +58,26 @@ export default function array(...args) {
                 }
 
                 for (const [idx, pattern] of arrayPattern.entries()) {
-                    const { matches: isMatch, reason } = matches.details(pattern, value[idx])
-                    if (!isMatch) {
+                    const details = matches.details(pattern, value[idx])
+                    if (!details.matches) {
                         return {
                             matches: false,
                             reasonTag: `array`,
                             reason: [`element ${ idx } of array does not match corresponding pattern`, [
-                                reason
+                                details
                             ]]
                         }
                     }
                 }
 
                 for (const [idx, item] of value.slice(arrayPattern.length).entries()) {
-                    const { matches: isMatch, reason } = matches.details(restPattern, item)
-                    if (!isMatch) {
+                    const details = matches.details(restPattern, item)
+                    if (!details.matches) {
                         return {
                             matches: false,
                             reasonTag: `array`,
                             reason: [`element ${ idx + arrayPattern.length } of array does not match rest pattern`, [
-                                reason
+                                details
                             ]]
                         }
                     }
@@ -107,41 +107,41 @@ export default function array(...args) {
                 }
 
                 for (const [idx, pattern] of startPattern.entries()) {
-                    const { matches: isMatch, reason } = matches.details(pattern, value[idx])
-                    if (!isMatch) {
+                    const details = matches.details(pattern, value[idx])
+                    if (!details.matches) {
                         return {
                             matches: false,
                             reasonTag: `array`,
                             reason: [`element ${ idx } of array does not match corresponding pattern`, [
-                                reason
+                                details
                             ]]
                         }
                     }
                 }
 
                 for (const [idx, pattern] of endPattern.entries()) {
-                    const { matches: isMatch, reason } = matches
+                    const details = matches
                         .details(pattern, value[value.length - endPattern.length + idx])
 
-                    if (!isMatch) {
+                    if (!details.matches) {
                         return {
                             matches: false,
                             reasonTag: `array`,
                             reason: [`element ${ idx - endPattern.length } of array does not match corresponding pattern`, [
-                                reason
+                                details
                             ]],
                         }
                     }
                 }
 
                 for (const [idx, item] of value.slice(startPattern.length, value.length - endPattern.length).entries()) {
-                    const { matches: isMatch, reason } = matches.details(restPattern, item)
-                    if (!isMatch) {
+                    const details = matches.details(restPattern, item)
+                    if (!details.matches) {
                         return {
                             matches: false,
                             reasonTag: `array`,
                             reason: [`element ${ idx + startPattern.length } of array does not match rest pattern`, [
-                                reason
+                                details
                             ]]
                         }
                     }

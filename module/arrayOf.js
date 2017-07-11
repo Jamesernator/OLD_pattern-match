@@ -12,13 +12,13 @@ export default function arrayOf(pattern) {
             }
 
             for (const [idx, item] of value.entries()) {
-                const { isMatch, reason } = matches.details(pattern, item)
-                if (!isMatch) {
+                const details = matches.details(pattern, item)
+                if (details.matches) {
                     return {
                         matches: false,
                         reasonTag: `arrayOf`,
                         reason: [`item at index ${ idx } does not match`, [
-                            reason
+                            details
                         ]]
                     }
                 }

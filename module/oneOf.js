@@ -6,11 +6,11 @@ export default function oneOf(...values) {
         [match](value, matches) {
             const reasons = []
             for (const val of values) {
-                const { matches: isMatch, reason } = matches.details(is(val), value)
-                if (isMatch) {
+                const details = matches.details(is(val), value)
+                if (details.matches) {
                     return { matches: true }
                 } else {
-                    reasons.push(reason)
+                    reasons.push(details)
                 }
             }
             return {

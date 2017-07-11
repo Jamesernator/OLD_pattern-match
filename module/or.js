@@ -5,11 +5,11 @@ export default function or(...patterns) {
         [match](value, matches) {
             const reasons = []
             for (const pattern of patterns) {
-                const { matches: isMatch, reason } = matches.details(pattern, value)
-                if (isMatch) {
+                const details = matches.details(pattern, value)
+                if (details.matches) {
                     return { matches: true }
                 } else {
-                    reasons.push(reason)
+                    reasons.push(details)
                 }
             }
             return {
