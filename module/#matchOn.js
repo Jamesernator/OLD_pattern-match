@@ -1,6 +1,6 @@
 import or from "./or.js"
 
-function _matchOn(match, value, patterns) {
+function _matchOn(match, value, patterns=[]) {
     return {
         if(...args) {
             if (args.length < 2) {
@@ -11,7 +11,8 @@ function _matchOn(match, value, patterns) {
             if (typeof handler !== 'function') {
                 throw new Error(`Expected a function as pattern handler`)
             }
-            return _matchOn(match, value, [...patterns, [pattern, handler]])
+            const newPatterns = [...patterns, [pattern, handler]]
+            return _matchOn(match, value, newPatterns)
 
         },
 
@@ -24,8 +25,13 @@ function _matchOn(match, value, patterns) {
                 throw new Error(`Expected function as input to else`)
             }
             for (const [pattern, handler] of patterns) {
-                if (match(pattern, value)) {
-                    return handler(value)
+                const { matches, value: matchValue } = match.details(
+                    pattern, 
+                    value
+                )
+                console.log(pattern, value, match.details(pattern, value))
+                if (matches) {
+                    return handler(matchValue)
                 }
             }
             return elseHandler(value)
@@ -48,5 +54,5 @@ function _matchOn(match, value, patterns) {
 }
 
 export default function matchOn(match, value) {
-    return _matchOn(match, value, { patterns: [], elseSet: false })
+    return _matchOn(match, value)
 }

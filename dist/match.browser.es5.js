@@ -90,7 +90,7 @@ var _or2 = _interopRequireDefault(_or);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _matchOn(match, value, patterns) {
+function _matchOn(match, value, patterns = []) {
     return {
         if(...args) {
             if (args.length < 2) {
@@ -101,7 +101,8 @@ function _matchOn(match, value, patterns) {
             if (typeof handler !== 'function') {
                 throw new Error(`Expected a function as pattern handler`);
             }
-            return _matchOn(match, value, [...patterns, [pattern, handler]]);
+            const newPatterns = [...patterns, [pattern, handler]];
+            return _matchOn(match, value, newPatterns);
         },
 
         i(...args) {
@@ -113,8 +114,10 @@ function _matchOn(match, value, patterns) {
                 throw new Error(`Expected function as input to else`);
             }
             for (const [pattern, handler] of patterns) {
-                if (match(pattern, value)) {
-                    return handler(value);
+                const { matches, value: matchValue } = match.details(pattern, value);
+                console.log(pattern, value, match.details(pattern, value));
+                if (matches) {
+                    return handler(matchValue);
                 }
             }
             return elseHandler(value);
@@ -137,7 +140,7 @@ function _matchOn(match, value, patterns) {
 }
 
 function matchOn(match, value) {
-    return _matchOn(match, value, { patterns: [], elseSet: false });
+    return _matchOn(match, value);
 }
 
 },{"./or.js":25}],4:[function(require,module,exports){
@@ -1001,7 +1004,7 @@ function or(...patterns) {
             for (const pattern of patterns) {
                 const details = matches.details(pattern, value);
                 if (details.matches) {
-                    return { matches: true };
+                    return { matches: true, value: details.value };
                 } else {
                     reasons.push(details);
                 }
@@ -1042,8 +1045,9 @@ function regex(regExp) {
                 };
             }
 
-            if (regExp.exec(value)) {
-                return { matches: true };
+            const result = regExp.exec(value);
+            if (result) {
+                return { matches: true, value: result };
             } else {
                 return {
                     matches: false,

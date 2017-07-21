@@ -18,7 +18,7 @@ function or(...patterns) {
             for (const pattern of patterns) {
                 const details = matches.details(pattern, value);
                 if (details.matches) {
-                    return { matches: true };
+                    return { matches: true, value: details.value };
                 } else {
                     reasons.push(details);
                 }

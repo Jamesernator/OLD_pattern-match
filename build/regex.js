@@ -24,8 +24,9 @@ function regex(regExp) {
                 };
             }
 
-            if (regExp.exec(value)) {
-                return { matches: true };
+            const result = regExp.exec(value);
+            if (result) {
+                return { matches: true, value: result };
             } else {
                 return {
                     matches: false,
