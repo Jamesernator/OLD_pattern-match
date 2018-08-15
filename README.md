@@ -6,7 +6,7 @@
 # Test a value matches a pattern
 
 ```js
-import match, { string, number } from "@jx/match"
+import match, { string, number } from "@jamesernator/match"
 
 match([string, string, number], ['cats', 'hats', 2]) // true
 
