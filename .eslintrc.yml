@@ -1,0 +1,668 @@
+
+root: true
+
+parser: "babel-eslint"
+
+parserOptions:
+    ecmaVersion: 8
+    sourceType: script
+
+overrides:
+    -
+        files:
+            - "**/*.mjs"
+        parserOptions:
+            ecmaVersion: 8
+            sourceType: module
+env:
+    browser: true
+    serviceworker: true
+    es6: true
+
+globals:
+    ai: true
+    $: true
+
+rules:
+    # ----- Error Detection ----- #
+    for-direction:
+        - warn
+    getter-return:
+        - error
+    no-constant-condition:
+        - error
+        - checkLoops: false
+    no-dupe-args:
+        - error
+    no-dupe-keys:
+        - error
+    no-duplicate-case:
+        - error
+    no-empty-character-class:
+        - error
+    no-ex-assign:
+        - error
+    no-extra-boolean-cast:
+        - error
+    no-func-assign:
+        - error
+    no-invalid-regexp:
+        - error
+    no-irregular-whitespace:
+        - error
+    no-obj-calls:
+        - error
+    no-prototype-builtins:
+        - warn
+    no-regex-spaces:
+        - warn
+    no-template-curly-in-string:
+        - warn
+    no-unexpected-multiline:
+        - error
+    no-unreachable:
+        - error
+    no-unsafe-finally:
+        - error
+    no-unsafe-negation:
+        - error
+    use-isnan:
+        - error
+    valid-typeof:
+        - error
+    accessor-pairs:
+        - error
+    array-callback-return:
+        - error
+    block-scoped-var: # But hopefully irrelevant
+        - error
+    consistent-return:
+        - error
+    no-compare-neg-zero:
+        - error
+    eqeqeq:
+        - error
+        - always
+        - null: ignore
+    no-implied-eval:
+        - error
+    no-extend-native:
+        - warn
+    no-extra-bind:
+        - error
+    no-labels:
+        - error
+    no-extra-label:
+        - error
+    no-global-assign:
+        - error
+    no-lone-blocks:
+        - error
+    no-new-wrappers:
+        - error
+    no-octal:
+        - error
+    no-octal-escape:
+        - error
+    no-redeclare:
+        - error
+    no-return-assign:
+        - error
+    no-self-assign:
+        - error
+    no-self-compare:
+        - error
+    no-sequences:
+        - error
+    no-unmodified-loop-condition:
+        - error
+    no-unused-expressions:
+        - error
+    no-unused-labels:
+        - error
+    no-useless-call:
+        - error
+    no-useless-concat:
+        - error
+    no-useless-escape:
+        - error
+    no-useless-return:
+        - error
+    no-with:
+        - error
+    prefer-promise-reject-errors:
+        - warn
+    radix:
+        - warn
+    strict:
+        - error
+        - global
+    no-delete-var:
+        - error
+    no-shadow-restricted-names:
+        - error
+    no-undef:
+        - error
+    no-unused-vars:
+        - error
+        - varsIgnorePattern: "^_"
+          argsIgnorePattern: "^_"
+          caughtErrorsIgnorePattern: "^_"
+
+    # Hoisting can still lead to bugs but circular references might exist
+    # for functions/classes
+    no-use-before-define:
+        - error
+        - classes: false
+          functions: false
+    no-new-require:
+        - error
+    no-path-concat:
+        - error
+    unicode-bom:
+        - error
+    no-fallthrough:
+        - error
+    dot-notation:
+        - error
+    no-alert:
+        - warn
+
+    # ----- Stylistic rules ----- #
+    no-control-regex:
+        - error
+    no-debugger:
+        - error
+    no-extra-parens:
+        - error
+        - all
+        - nestedBinaryExpressions: false
+    no-extra-semi:
+        - error
+    dot-location:
+        - error
+        - property
+    no-caller:
+        - error
+    no-case-declarations:
+        - error
+    no-implicit-globals:
+        - error
+    no-multi-spaces:
+        - error
+    no-multi-str:
+        - error
+    no-proto:
+        - error
+    no-void:
+        - error
+    no-label-var:
+        - error
+    array-bracket-spacing:
+        - error
+    brace-style:
+        - error
+        - 1tbs
+        - allowSingleLine: true
+    camelcase:
+        - error
+        - properties: never
+    comma-dangle:
+        - error
+        -
+            arrays: always-multiline
+            objects: always-multiline
+            imports: always-multiline
+            exports: always-multiline
+            functions: always-multiline
+    comma-spacing:
+        - error
+        - before: false
+          after: true
+    comma-style:
+        - error
+    computed-property-spacing:
+        - error
+    eol-last:
+        - error
+    func-call-spacing:
+        - error
+    function-paren-newline:
+        - error
+        - consistent
+    indent:
+        - error
+        - 4
+        - ignoredNodes:
+            - ConditionalExpression
+    key-spacing:
+        - error
+        - beforeColon: false
+          afterColon: true
+    keyword-spacing:
+        - error
+    lines-around-comment:
+        - error
+        - allowBlockStart: true
+          allowArrayStart: true
+          allowObjectStart: true
+    max-len:
+        - error
+        - 100
+        - ignoreUrls: true
+          ignoreStrings: true
+          ignoreTemplateLiterals: true
+          ignoreRegExpLiterals: true
+          ignoreComments: true
+
+    max-statements-per-line:
+        - off
+    new-cap:
+        - error
+        - properties: false
+    new-parens:
+        - error
+    newline-per-chained-call:
+        - error
+        - ignoreChainWithDepth: 3
+    no-array-constructor:
+        - error
+    no-bitwise:
+        - warn
+    no-lonely-if:
+        - error
+    no-mixed-spaces-and-tabs:
+        - error
+    no-multi-assign:
+        - error
+    no-new-object:
+        - error
+    no-tabs:
+        - error
+    no-trailing-spaces:
+        - error
+    no-unneeded-ternary:
+        - error
+    no-whitespace-before-property:
+        - error
+    nonblock-statement-body-position:
+        - error
+        - beside
+    object-curly-newline:
+        - error
+        - consistent: true
+    object-curly-spacing:
+        - error
+        - always
+    one-var:
+        - error
+        - initialized: never
+    operator-assignment:
+        - error
+    padded-blocks:
+        - error
+        - never
+    quote-props:
+        - error
+        - as-needed
+    semi:
+        - error
+        - never
+    semi-spacing:
+        - error
+    semi-style:
+        - error
+    space-before-function-paren:
+        - error
+        -
+            anonymous: never
+            named: never
+            asyncArrow: always
+    space-unary-ops:
+        - error
+        - nonwords: false
+          words: true
+    switch-colon-spacing:
+        - error
+    template-tag-spacing:
+        - error
+        - never
+    arrow-parens:
+        - error
+        - as-needed
+    arrow-spacing:
+        - error
+    constructor-super:
+        - error
+    generator-star-spacing:
+        - error
+        - after
+    no-class-assign:
+        - error
+    no-const-assign:
+        - error
+    no-dupe-class-members:
+        - error
+    no-duplicate-imports:
+        - error
+    no-new-symbol:
+        - error
+    no-this-before-super:
+        - error
+    no-useless-computed-key:
+        - error
+    no-useless-constructor:
+        - error
+    no-useless-rename:
+        - error
+    no-var:
+        - error
+    object-shorthand:
+        - error
+        - always
+    prefer-arrow-callback:
+        - error
+        - allowNamedFunctions: true
+          allowUnboundThis: true
+    prefer-const:
+        - error
+        - destructuring: all
+    prefer-destructuring:
+        - error
+        - array: false
+        - enforceForRenamedProperties: false
+    prefer-numeric-literals:
+        - error
+    prefer-rest-params:
+        - error
+    prefer-spread:
+        - error
+    prefer-template:
+        - error
+    rest-spread-spacing:
+        - error
+    symbol-description:
+        - error
+    template-curly-spacing:
+        - error
+        - always
+    yield-star-spacing:
+        - error
+    curly:
+        - error
+        - multi-line
+        - consistent
+    line-comment-position:
+        - error
+
+    space-before-blocks:
+        - error
+        - always
+    max-lines:
+        - error
+        - 500
+    max-statements:
+        - error
+        - 50
+        - ignoreTopLevelFunctions: true
+    complexity:
+        - error
+        - max: 40
+    no-inline-comments:
+        - error
+    block-spacing:
+        - error
+    spaced-comment:
+        - error
+        - always
+    no-param-reassign:
+        - error
+    no-div-regex:
+        - error
+    no-new:
+        - error
+    linebreak-style:
+        - error
+    max-depth:
+        - error
+    max-nested-callbacks:
+        - error
+    max-params:
+        - error
+        - 4
+    no-negated-condition:
+        - error
+    no-plusplus:
+        - error
+
+    # A comment should be put into the block to explain why
+    no-empty:
+        - error
+    no-empty-function:
+        - error
+
+    # ----- Disabled ----- #
+    no-nested-ternary:
+        - off
+    # A lot of sequential patterns
+    # will be unintentionally captured by this
+    no-await-in-loop:
+        - off
+    valid-jsdoc:
+        - off
+    # Often false positives
+    class-methods-use-this:
+        - off
+    # Doesn't understand strict mode block scoped functions
+    no-inner-declarations:
+        - off
+    # Generally irrelevant if property is inherited or not
+    # enumerability is more important
+    guard-for-in:
+        - off
+    # Specialist and irrelevant generally
+    no-else-return:
+        - off
+    # Sometimes property keys need this
+    no-eq-null:
+        - off
+    # Only makes sense with { a: {}, ...rest } for example
+    no-empty-pattern:
+        - off
+    # Callbacks and functions may need to use this depending on call
+    # patterns
+    no-invalid-this:
+        - off
+    # It's unlikely to be confused and it may be a regular property key instead
+    # or might represent Python objects
+    no-iterator:
+        - off
+    # The rule isn't always robust and sometimes reports falsely
+    no-loop-func:
+        - off
+    # Generally I think people can decide for themselves whether
+    # to use the feature
+    no-new-func:
+        - off
+    # Generally irrelevant
+    no-restricted-properties:
+        - off
+    # Rare if ever does it apply, I think in such cases
+    # it's not important
+    no-script-url:
+        - off
+    # It has uses in validation
+    no-throw-literal:
+        - off
+    # It might be better for consistency to allow it over Promise.resolve
+    require-await:
+        - off
+    # This is generally irrelevant
+    init-declarations:
+        - off
+    # Only affects IE8 and earlier
+    no-catch-shadow:
+        - off
+    # Irrelevant
+    no-restricted-globals:
+        - off
+    # Sometimes undefined is a real value so in these cases
+    # it might be better to be explicit
+    no-undef-init:
+        - off
+    # This only really applies to Node-backs and makes no sense for multiple
+    # events
+    callback-return:
+        - off
+    # People should be able to decide for themselves
+    global-require:
+        - off
+    # Only applies to certain node style callbacks
+    handle-callback-err:
+        - off
+    # This is irrelevant in the latest version of Node
+    no-buffer-constructor:
+        - off
+    # Multiple variable declarations per declarator won't be allowed anyway
+    no-mixed-requires:
+        - off
+    # Irrelevant
+    no-process-env:
+        - off
+    # Ditto
+    no-process-exit:
+        - off
+    # Ditto
+    no-restricted-modules:
+        - off
+    # Often useful in certain types of applications
+    no-sync:
+        - off
+    # Comments may start with the function name or something similar
+    capitalized-comments:
+        - off
+    # Giving a better name than a consistent one is probably better
+    consistent-this:
+        - off
+    # Given shorthand methods should be used when possible anyway, when
+    # this is used it is probably intentional
+    func-name-matching:
+        - off
+    # Often unneeded
+    func-names:
+        - off
+    # Also often useful both ways
+    func-style:
+        - off
+    # None
+    id-blacklist:
+        - off
+    # Too specialist
+    id-match:
+        - off
+    # We're not using jsx so this isn't relevant
+    jsx-quotes:
+        - off
+    # It's often difficult to actually format ternaries to fulfill this
+    multiline-ternary:
+        - off
+    # Sometimes relevant in complex algorithms:
+    no-continue:
+        - off
+    # Often times it's understandable anyway
+    no-mixed-operators:
+        - off
+    # Some parts of CA might need more separation
+    no-multiple-empty-lines:
+        - off
+    # Often useful for simple expressions
+    no-ternary:
+        - off
+    # Used for private properties
+    no-underscore-dangle:
+        - off
+    # Using consistent instead
+    object-property-newline:
+        - off
+    # Doesn't apply with one-var per declaration
+    one-var-declaration-per-line:
+        - off
+    # Often unncesssary
+    require-jsdoc:
+        - off
+    # This can be very hard to maintain
+    sort-keys:
+        - off
+    # Not applicable as one-var
+    sort-vars:
+        - off
+    # Often more difficult to read as syntax highlighting already
+    # makes it clear
+    wrap-regex:
+        - off
+    # Extensibility later might be needed so allowing _ => { return 10 }
+    # is probably preferable
+    arrow-body-style:
+        - off
+    # When written well this doesn't apply
+    no-confusing-arrow:
+        - off
+    # We won't restrict anything
+    no-restricted-imports:
+        - off
+    # A generator that only returns might be neccesary
+    require-yield:
+        - off
+    # If used as an expression it probably doesn't matter
+    wrap-iife:
+        - off
+    # Sparse arrays can be useful on occasion
+    no-sparse-arrays:
+        - off
+    # Generally when yoda is used its for readability
+    yoda:
+        - off
+    # Annoying to maintain
+    sort-imports:
+        - off
+    # This tends to be intrusive to things like HTTP status codes
+    # validation and so on
+    no-magic-numbers:
+        - off
+    # Inner variables often conceptually use the same name e.g.
+    # function wrappers that use the same name for arguments, etc
+    no-shadow:
+        - off
+    # This will be allowed as it gives a clue that the value is indeed
+    # asynchronous and explictly causes another microtask
+    no-return-await:
+        - off
+    # Too many special cases
+    id-length:
+        - off
+    # These should be handled by another tool as otherwise the watcher
+    # would be added these into the files
+    no-warning-comments:
+        - off
+    # Forces single items into one line which makes it harder to
+    # extends arrays
+    array-bracket-newline:
+        - off
+    # Vars on top isn't neccesary when no-vars is enabled anyway
+    vars-on-top:
+        - off
+    # This one is *really* complicated
+    padding-line-between-statements:
+        - off
+    # Don't understand how this rule works
+    array-element-newline:
+        - off
+        - multiline: true
+    quotes:
+        - off
+    space-in-parens:
+        - off
+    space-infix-ops:
+        - off
+    operator-linebreak:
+        - off
