@@ -1,4 +1,4 @@
-import match from "./sym.js"
+import match from "./sym.mjs"
 
 // undef returns true if the obj matched against is undefined
 export default {

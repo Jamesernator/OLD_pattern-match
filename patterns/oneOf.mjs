@@ -1,5 +1,5 @@
-import match from "./sym.js"
-import is from "./is.js"
+import match from "./sym.mjs"
+import is from "./is.mjs"
 
 export default function oneOf(...values) {
     return {

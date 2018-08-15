@@ -1,7 +1,7 @@
-import matchSymbol from "./sym.js"
-import matchDetails from "./--matchDetails.js"
-import defaultResolve from "./resolve.js"
-import matchOn from "./--matchOn.js"
+import matchSymbol from "./sym.mjs"
+import matchDetails from "./--matchDetails.mjs"
+import defaultResolve from "./resolve.mjs"
+import matchOn from "./--matchOn.mjs"
 
 export default function makeMatch(resolve=defaultResolve, baseMatch=null) {
     function match(...args) {

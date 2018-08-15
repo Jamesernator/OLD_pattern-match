@@ -1,4 +1,4 @@
-import or from "./or.js"
+import or from "./or.mjs"
 
 function _matchOn(match, value, patterns=[]) {
     return {

@@ -1,12 +1,12 @@
-import match from "./sym.js"
-import undef from "./undef.js"
-import nil from "./nil.js"
-import is from "./is.js"
-import cond from "./cond.js"
-import regex from "./regex.js"
-import date from "./date.js"
-import array from "./array.js"
-import obj from "./obj.js"
+import match from "./sym.mjs"
+import undef from "./undef.mjs"
+import nil from "./nil.mjs"
+import is from "./is.mjs"
+import cond from "./cond.mjs"
+import regex from "./regex.mjs"
+import date from "./date.mjs"
+import array from "./array.mjs"
+import obj from "./obj.mjs"
 
 
 // eslint-disable-next-line complexity

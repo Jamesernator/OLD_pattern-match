@@ -1,4 +1,4 @@
-import match from "./sym.js"
+import match from "./sym.mjs"
 
 export default function cond(func, suppressErrors=false) {
     if (suppressErrors) {

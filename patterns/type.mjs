@@ -1,4 +1,4 @@
-import match from "./sym.js"
+import match from "./sym.mjs"
 
 const names = [
     'symbol',

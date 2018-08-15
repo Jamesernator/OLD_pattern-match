@@ -1,5 +1,5 @@
-import match from "./sym.js"
-import isConstructor from "./--isConstructor.js"
+import match from "./sym.mjs"
+import isConstructor from "./--isConstructor.mjs"
 
 export default {
     [match](value) {

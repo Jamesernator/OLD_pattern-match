@@ -1,4 +1,4 @@
-import match from "./sym.js"
+import match from "./sym.mjs"
 
 // is returns true if the object is identical to the passed object
 export default function is(other) {

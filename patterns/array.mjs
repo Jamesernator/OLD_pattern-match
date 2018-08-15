@@ -1,4 +1,4 @@
-import match from "./sym.js"
+import match from "./sym.mjs"
 
 export default function array(...args) {
     if (args.length === 1) {

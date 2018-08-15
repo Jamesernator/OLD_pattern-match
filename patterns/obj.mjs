@@ -1,4 +1,4 @@
-import match from "./sym.js"
+import match from "./sym.mjs"
 
 function* entries(object, symbols) {
     for (const name of Object.getOwnPropertyNames(object)) {

@@ -1,3 +1,3 @@
-import match from "./match.js"
+import match from "./match.mjs"
 
 export default match
