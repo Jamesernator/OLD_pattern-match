@@ -13,6 +13,9 @@ export default function makeMatch(resolve=defaultResolve, baseMatch=null) {
         return matchDetails(realPattern, target, match).matches
     }
 
+    match.make = resolve => {
+      return makeMatch(resolve, match)
+    }
     match.resolve = resolve
     match[Symbol.toPrimitive] = _ => matchSymbol
     match.fork = r => makeMatch(r, baseMatch)
